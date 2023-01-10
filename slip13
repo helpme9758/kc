@@ -1,0 +1,84 @@
+Slip 13
+1.Scala
+1.Write user defined functions to reverse the case of a given string and call 
+the function using MAP.
+
+object revstr
+{
+	def reverse(ch:Char):Char=
+	{
+	if(ch.isLower)
+	ch.toUpper;
+	else
+	ch.toLower;
+	}
+	def main(args:Array[String])
+	{
+	var str=" ";
+	println("Enter String:");
+	str=readLine();
+	var str2=str.map(reverse);
+	println(str2);
+	}
+}
+
+------------------------------------------------------------------------------------------------------
+
+
+2.Mongo
+
+1. Model the following sales system as a document database.
+Consider a set of products, customers, orders and invoices. An 
+invoice is generated when an order is processed. 
+2. Assume appropriate attributes and collections as per the query 
+requirements. [5]
+3. Insert at least 10 documents in each collection. [10]
+4. Answer the following Queries.
+a. List all products in the inventory. [21/2 ]
+b. List the details of orders with a value >10000. [21/2 ]
+c. List all the orders which has not been processed (invoice not 
+generated). [5]
+d. List all the orders along with their invoice for “Mr. Arun 
+Kumar”. [5]
+
+
+db.product.insert({name:"robot",price:12000})
+	
+
+	 db.product.insert({name:"toycar",price:2000})
+	
+
+	 db.product.insert({name:"cricketset",price:9000})
+	
+
+	 db.product.insert({name:"studymaterial",price:19000})
+	
+	
+	 db.order.insert({orderno:3736,custName:"arun
+	kumar",product:{productName:"toycar",price:20000},order_
+	date:"12/2/2019",status:"processed",Totalbill:2039,invoice:{i
+	nvoiceNO:67564,bill:2039,date:"17/2/2019"}})
+	
+
+	 db.order.insert({orderno:3737,custName:"arun
+	kumar",product:{productName:"robot",price:12000},order_d
+	ate:"11/3/2019",status:"processed",Totalbill:12800,invoice:{i
+	nvoiceNO:67574,bill:12039,date:"17/3/2019"}})
+	
+
+	> db.order.insert({orderno:3738,custName:"arun
+	kumar",product:{productName:"cricketset",price:9000},order
+	_date:"15/5/2019",status:"in process",Totalbill:9050})
+
+	
+
+	 db.order.insert({orderno:3739,custName:"mukesh
+	patil",product:{productName:"studentmaterial",price:19000}
+	,order_date:"15/8/2019",status:"in process",Totalbill:19080})
+	
+******************************************
+4)
+a)> db.product.find().pretty()
+b) > db.order.find({Totalbill:{$lt:10000}})
+c) > db.order.find({status:"in process"})
+d) >db.order.find({custName:"arunkumar",status:"processed"})
